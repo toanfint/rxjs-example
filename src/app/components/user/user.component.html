@@ -1,0 +1,31 @@
+<h2>RxJS Demo - UserComponent</h2>
+<hr />
+
+<!-- 1. combineLatest -->
+<p *ngIf="loading">Loading...</p>
+<h3>1. combineLatest: Ghép Users + Posts</h3>
+<ul>
+    <li *ngFor="let p of posts">
+        <b>{{ p.userName }}:</b> {{ p.title }}
+    </li>
+</ul>
+<hr />
+
+<!-- 2. iif -->
+<h3>2. iif: Chọn API theo userId</h3>
+<input type="number" [(ngModel)]="userId" (change)="loadConditional()" />
+<ul>
+    <li *ngFor="let item of conditionalData">
+        {{ item.title || item.name }}
+    </li>
+</ul>
+<hr />
+
+<!-- 3. switchMap -->
+<h3>3. switchMap: Chọn User → Todos</h3>
+<select (ngModelChange)="changeUser($event)">
+    <option *ngFor="let id of userIds" [value]="id">{{ id }}</option>
+</select>
+<ul>
+    <li *ngFor="let t of todos">{{ t.title }}</li>
+</ul>
