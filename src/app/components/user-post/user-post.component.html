@@ -1,0 +1,25 @@
+<h3 style="color: red;">from, mergeMap, concatMap</h3>
+<p>User Posts sử dụng <b>from</b> và <b>mergeMap</b> và <b>concatMap</b></p>
+<p> => Gọi API lấy các bài báo của 3 user có mã là 1, 2, 3</p>
+<p>mergeMap</p>
+<ul>
+    <li *ngFor="let post of posts">{{ post.title }}</li>
+</ul>
+<p>concatMap</p>
+<ul>
+    <li *ngFor="let post of postsConcatMap">{{ post.title }}</li>
+</ul>
+<pre>
+    Toán tử concatMap
+    📌 Ý nghĩa
+            Giống mergeMap nhưng chạy tuần tự (chờ Observable trước hoàn tất mới chạy Observable tiếp theo).
+            Đảm bảo giữ đúng thứ tự kết quả.
+            Trong khi mergeMap chạy song song (có thể trả kết quả lộn xộn nếu API nhanh/chậm khác nhau).
+    Khi dùng mergeMap, tức là gọi song song các API:
+        👉 Điều này nhanh hơn, vì các request chạy cùng lúc.
+        Nhưng thứ tự kết quả có thể không đúng thứ tự userIds.
+    Nếu muốn giữ thứ tự, ta đổi mergeMap thành concatMap:
+        Lúc này:
+            API userId=1 gọi xong → mới đến userId=2 → mới đến userId=3.
+            Kết quả chắc chắn theo đúng thứ tự (nhưng chậm hơn vì tuần tự).
+</pre>

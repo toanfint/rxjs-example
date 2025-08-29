@@ -1,9 +1,50 @@
-<p>tap là side-effect operator: dùng để làm việc phụ trong pipeline mà không làm thay đổi dữ liệu của Observable</p>
-<p>Nó thường dùng cho logging, debug, trigger action, hoặc thao tác phụ (ví dụ: show/hide loading).</p>
-<p>Khác với map (biến đổi dữ liệu). tap chỉ "nhìn qua" và không thay đổi giá trị đi tiếp.</p>
+<div style="padding: 20px;">
+    <p>tap là side-effect operator: dùng để làm việc phụ trong pipeline mà không làm thay đổi dữ liệu của Observable</p>
+    <p>Nó thường dùng cho logging, debug, trigger action, hoặc thao tác phụ (ví dụ: show/hide loading).</p>
+    <p>Khác với map (biến đổi dữ liệu). tap chỉ "nhìn qua" và không thay đổi giá trị đi tiếp.</p>
 
-<app-user></app-user>
+    <app-user></app-user>
 
-<hr>
+    <hr>
+    <br>
 
-<app-search></app-search>
+    <app-user-post></app-user-post>
+
+    <hr>
+
+    <app-search></app-search>
+
+    <hr>
+
+    <p>Search Lazy Load: lấy toàn bộ dữ liệu từ api, mỗi lần scroll chuột thì lấy 5 dữ liệu</p>
+    <app-search-lay-load></app-search-lay-load>
+
+    <hr>
+
+    <p>Search Lazy Load: lấy một phần dữ liệu từ api có phân trang, mỗi lần scroll chuột thì truyền số trang tiếp theo
+        để lấy tiếp dữ liệu search</p>
+    <p>Ưu điểm: đơn giản, load thêm khi gần chạm đáy.</p>
+    <p>Nhược: DOM vẫn render tất cả items → nhiều dữ liệu thì lag.</p>
+    <app-search-lazy-load2></app-search-lazy-load2>
+
+    <hr>
+    <br>
+
+    <h4 style="color: red;font-weight: 600;">Search Lazy Load sử dụng IntersectionObserver để tự động tải thêm dữ liệu
+        khi cuộn đến cuối danh sách.</h4>
+    <app-search-lazy-load3></app-search-lazy-load3>
+
+    <hr>
+    <br>
+
+    <h4 style="color: red;font-weight: 600;">Search Lazy Load sử dụng CDK Virtual Scroll (cdk-virtual-scroll-viewport)
+        (chỉ render khoảng 20 item visible)</h4>
+    <p>Cần cài đặt thông qua npm</p>
+    <app-search-lazy-load4></app-search-lazy-load4>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</div>

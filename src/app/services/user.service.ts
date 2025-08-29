@@ -6,8 +6,19 @@ import {
   iif,
   map,
   switchMap,
-  Observable
+  Observable,
+  from,
+  mergeMap,
+  concatMap,
+  toArray
 } from 'rxjs';
+
+export interface Post {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +69,37 @@ export class UserService {
   searchUsers(keyword: string): Observable<any[]> {
     return this.http.get<any[]>(
       `https://jsonplaceholder.typicode.com/users?name_like=${keyword}`
+    );
+  }
+
+  searchUsersPages(keyword: string, page: number, limit: number): Observable<any[]> {
+    return this.http.get<any[]>(
+      `https://jsonplaceholder.typicode.com/users?name_like=${keyword}&_page=${page}&_limit=${limit}`
+    );
+  }
+
+  searchPosts(keyword: string, page: number, limit: number): Observable<any[]> {
+    return this.http.get<any[]>(
+      `https://jsonplaceholder.typicode.com/posts?q=${keyword}&_page=${page}&_limit=${limit}`
+    );
+  }
+
+  // Lấy toàn bộ posts của nhiều userIds sử dụng from và mergeMap
+  getPostsByUsers(userIds: number[]): Observable<any[]> {
+    return from(userIds).pipe(
+      mergeMap(id => this.http.get<any[]>(`${this.domain}/posts?userId=${id}`)),
+      // gộp tất cả thành 1 mảng duy nhất
+      mergeMap(posts => from(posts)),
+      toArray()
+    );
+  }
+
+  getPostsByUsersConcatMap(userIds: number[]): Observable<any[]> {
+    return from(userIds).pipe(
+      concatMap(id => this.http.get<any[]>(`${this.domain}/posts?userId=${id}`)),
+      // gộp tất cả thành 1 mảng duy nhất
+      concatMap(posts => from(posts)),
+      toArray()
     );
   }
 }

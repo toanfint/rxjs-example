@@ -1,0 +1,9 @@
+<!-- user.component.html -->
+<input [formControl]="searchControl" placeholder="Search..." />
+
+<div *ngFor="let item of results" class="item">
+    {{ item.title }}
+</div>
+
+<!-- điểm neo để IntersectionObserver quan sát -->
+<div #anchor></div>

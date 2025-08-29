@@ -1,0 +1,7 @@
+<input [formControl]="searchControl" placeholder="Search..." />
+
+<cdk-virtual-scroll-viewport itemSize="50" class="viewport" (scrolledIndexChange)="onScrolledIndexChange($event)">
+    <div *cdkVirtualFor="let item of results" class="item">
+        {{ item.id }} - {{ item.title }}
+    </div>
+</cdk-virtual-scroll-viewport>

@@ -1,0 +1,30 @@
+<div style="padding: 10px;">
+    <div style="color: red; font-weight: bold;">Toán tử merge, scan trong rxjs</div>
+    <pre>
+        1. merge(search$, loadMoreStream$)
+            Gộp 2 observable lại thành 1 stream:
+                search$ → phát khi người dùng nhập từ khoá.
+                loadMoreStream$ → phát khi scroll xuống cuối.
+            merge giúp xử lý cả 2 trong cùng một subscribe duy nhất.
+        2. scan
+            Giống như reduce, nhưng hoạt động theo thời gian thực.
+            Cú pháp:
+                scan((acc, curr) => ..., initialValue)
+                    acc: giá trị tích luỹ (giữ lại các kết quả cũ).
+                    curr: giá trị mới từ observable (một mảng kết quả mới từ API).
+                    initialValue: giá trị khởi tạo (ở đây là []).
+                → Khi có search mới, hoặc load thêm, nó sẽ append dữ liệu mới (curr) vào kết quả cũ (acc).
+                    Kết quả cuối cùng là một mảng liên tục tăng lên.
+                    Giống như "gộp danh sách kết quả lại".
+    </pre>
+</div>
+
+
+<h3>Lazy load Search: sử dụng API search có phân trang (100 posts). Cách này tương đối phức tạp.</h3>
+<input type="text" [formControl]="searchControl" placeholder="Tìm bài viết..." />
+
+<ul>
+    <li *ngFor="let post of results">{{ post.id }} - {{ post.title }}</li>
+</ul>
+
+<p *ngIf="loading">Đang tải thêm...</p>

@@ -1,0 +1,8 @@
+<h3>Lazy load Search</h3>
+<input type="text" [formControl]="searchControl" placeholder="Nhập tên user..." />
+
+<ul>
+    <li *ngFor="let user of visibleResults">{{ user.name }}</li>
+</ul>
+
+<p *ngIf="loading">Đang tải thêm...</p>
