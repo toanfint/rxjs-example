@@ -14,6 +14,9 @@ export class UserPostComponent implements OnInit {
   posts: any[] = [];
   postsConcatMap: any[] = [];
 
+  totalPosts?: number;
+  progress: number[] = [];
+
   constructor(private http: HttpClient, private userService: UserService) { }
 
   ngOnInit() {
@@ -36,5 +39,15 @@ export class UserPostComponent implements OnInit {
     //   // mergeMap sẽ gộp kết quả từng API call vào cùng 1 stream
     //   this.posts.push(...posts);
     // });
+
+    // reduce → chỉ có kết quả cuối cùng
+    this.userService.getTotalPosts().subscribe(result => {
+      this.totalPosts = result;
+    });
+
+    // scan → thấy tiến trình cộng dồn
+    this.userService.getPostsProgress().subscribe(count => {
+      this.progress.push(count);
+    });
   }
 }

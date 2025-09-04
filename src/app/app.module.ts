@@ -14,6 +14,9 @@ import { SearchLazyLoad2Component } from './search-lazy-load2/search-lazy-load2.
 import { SearchLazyLoad3Component } from './search-lazy-load3/search-lazy-load3.component';
 import { SearchLazyLoad4Component } from './search-lazy-load4/search-lazy-load4.component';
 import { UserPostComponent } from './components/user-post/user-post.component';
+import { CombineLatestComponent } from './components/combine-latest/combine-latest.component';
+import { WebsocketExampleComponent } from './components/websocket-example/websocket-example.component';
+import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { UserPostComponent } from './components/user-post/user-post.component';
     SearchLazyLoad2Component,
     SearchLazyLoad3Component,
     SearchLazyLoad4Component,
-    UserPostComponent
+    UserPostComponent,
+    CombineLatestComponent,
+    WebsocketExampleComponent,
+    ChatDialogComponent
   ],
   imports: [
     BrowserModule,

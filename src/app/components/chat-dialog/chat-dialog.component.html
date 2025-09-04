@@ -1,0 +1,17 @@
+<!-- Nút mở/đóng chat -->
+<button class="chat-toggle" (click)="toggle()">
+    💬 Chat
+</button>
+
+<!-- Cửa sổ chat -->
+<div class="chat-box" *ngIf="isOpen">
+    <div class="chat-header">
+        Chat Window
+        <button class="close-btn" (click)="toggle()">✖</button>
+    </div>
+
+    <div class="chat-body">
+        <!-- Gắn WebSocket chat component vào đây -->
+        <app-websocket-example></app-websocket-example>
+    </div>
+</div>

@@ -1,14 +1,31 @@
 <h2>RxJS Demo - UserComponent</h2>
-<hr />
 
 <!-- 1. combineLatest -->
 <p *ngIf="loading">Loading...</p>
 <h3>1. combineLatest: Ghép Users + Posts</h3>
+<p>Sử dụng sort để sắp xếp theo vần a, b, c</p>
 <ul>
     <li *ngFor="let p of posts">
         <b>{{ p.userName }}:</b> {{ p.title }}
     </li>
 </ul>
+<hr />
+
+<!-- 1.2 forkJoin -->
+<p *ngIf="loading">Loading...</p>
+<h3>1.2 forkJoin: Ghép Users + Posts</h3>
+<ul>
+    <li *ngFor="let p of postsForkJoin">
+        <b>{{ p.userName }}:</b> {{ p.title }}
+    </li>
+</ul>
+
+<p>combineLatest([users$, posts$]) → chờ cả 2 emit ít nhất 1 lần, sau đó nếu có Observable nào emit tiếp thì sẽ phát giá
+    trị mới.</p>
+<p>forkJoin([users$, posts$]) → chờ cả 2 complete rồi mới emit giá trị cuối cùng của cả 2.</p>
+<p>Vì HttpClient chỉ emit 1 lần rồi complete nên về cơ bản trường hợp này forkJoin giống combineLatest.</p>
+<p>👉 Trong trường hợp này: forkJoin là lựa chọn tốt hơn vì nó đúng semantics: chỉ khi tất cả API trả về mới combine.
+</p>
 <hr />
 
 <!-- 2. iif -->

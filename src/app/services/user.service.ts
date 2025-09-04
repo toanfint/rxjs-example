@@ -10,7 +10,11 @@ import {
   from,
   mergeMap,
   concatMap,
-  toArray
+  toArray,
+  forkJoin,
+  reduce,
+  scan,
+  shareReplay
 } from 'rxjs';
 
 export interface Post {
@@ -29,12 +33,29 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  /** 1. combineLatest: Users + Posts */
+  /** 1. combineLatest: Users + Posts + shareReplay*/
   getUsersAndPosts() {
     const users$ = this.http.get<any[]>(`${this.domain}/users`);
     const posts$ = this.http.get<any[]>(`${this.domain}/posts`);
 
+    //Trong https://jsonplaceholder.typicode.com/posts có chứa userId nên nó có thể join với https://jsonplaceholder.typicode.com/users để lấy userName
     return combineLatest([users$, posts$]).pipe(
+      map(([users, posts]) =>
+        posts.map(post => ({
+          ...post,
+          userName: users.find(u => u.id === post.userId)?.name,
+        }))
+      ),
+      shareReplay(1) //cache trong service scope
+    );
+  }
+
+  /** 1. combineLatest: Users + Posts */
+  getUsersAndPostsforkJoin() {
+    const users$ = this.http.get<any[]>(`${this.domain}/users`);
+    const posts$ = this.http.get<any[]>(`${this.domain}/posts`);
+
+    return forkJoin([users$, posts$]).pipe(
       map(([users, posts]) =>
         posts.map(post => ({
           ...post,
@@ -100,6 +121,29 @@ export class UserService {
       // gộp tất cả thành 1 mảng duy nhất
       concatMap(posts => from(posts)),
       toArray()
+    );
+  }
+
+  // Tính tổng số posts bằng reduce
+  getTotalPosts() {
+    return this.http.get<any[]>(`${this.domain}/posts`).pipe(
+      map(posts => posts.length), // trả về tổng số bài
+      reduce((acc, curr) => acc + curr, 0)
+      // vì http.get chỉ emit 1 lần => reduce = curr (ko có nhiều emit)
+    );
+  }
+
+  // Mỗi userId có 10 posts trong JSONPlaceholder
+  getPostsProgress() {
+    const userIds = Array.from({ length: 10 }, (_, i) => i + 1);
+
+    return from(userIds).pipe(
+      mergeMap(userId =>
+        this.http.get<any[]>(`${this.domain}/posts?userId=${userId}`).pipe(
+          map(posts => posts.length) // mỗi user có 10 posts
+        )
+      ),
+      scan((acc, curr) => acc + curr, 0) // cộng dồn
     );
   }
 }

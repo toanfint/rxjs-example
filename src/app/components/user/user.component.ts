@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { tap, delay } from 'rxjs/operators';
+import { tap, delay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user',
@@ -10,6 +10,7 @@ import { tap, delay } from 'rxjs/operators';
 })
 export class UserComponent {
   posts: any[] = [];
+  postsForkJoin: any[] = [];
   conditionalData: any[] = [];
   todos: any[] = [];
 
@@ -23,6 +24,9 @@ export class UserComponent {
   ngOnInit() {
     // 1. combineLatest
     this.getUsersAndPosts();
+
+    // 1.2 forkJoin
+    this.getUsersAndPostsForForkJoin();
 
     // 3. switchMap
     this.userService.getTodosByUser().subscribe(data => (this.todos = data));
@@ -45,8 +49,19 @@ export class UserComponent {
     this.userService.getUsersAndPosts()
       .pipe(
         delay(1900),
+        map(posts => [...posts].sort((a, b) => a.userName.localeCompare(b.userName))), //sắp xếp theo vần a, b, c
         tap(() => this.loading = false)  // tắt loading khi có kết quả
       )
       .subscribe(data => (this.posts = data));
+  }
+
+  getUsersAndPostsForForkJoin() {
+    this.loading = true;
+    this.userService.getUsersAndPostsforkJoin()
+      .pipe(
+        delay(1900),
+        tap(() => this.loading = false)  // tắt loading khi có kết quả
+      )
+      .subscribe(data => (this.postsForkJoin = data));
   }
 }

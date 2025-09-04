@@ -1,0 +1,15 @@
+<!--Sử dụng <b>combineLatest</b> (trường hợp này không dùng <b>forkJoin</b> được)-->
+<p>Tìm kiếm</p>
+<label>User ID:
+    <input type="number" [formControl]="userIdControl" placeholder="Nhập userId (1-10)">
+</label>
+
+<label>Keyword:
+    <input [formControl]="keywordControl" placeholder="Nhập từ khóa">
+</label>
+
+<ul>
+    <li *ngFor="let post of posts$ | async">
+        {{ post.title }}
+    </li>
+</ul>

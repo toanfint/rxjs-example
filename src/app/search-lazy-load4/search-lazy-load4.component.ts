@@ -27,6 +27,7 @@ export class SearchLazyLoad4Component implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
+  // npm install @angular/cdk
   @ViewChild(CdkVirtualScrollViewport) viewport!: CdkVirtualScrollViewport;
 
   constructor(private userService: UserService) { }

@@ -1,0 +1,32 @@
+.row {
+    margin: 8px 0;
+    display: flex;
+    gap: 8px;
+}
+
+input {
+    padding: 6px 8px;
+    width: 280px;
+}
+
+ul {
+    margin-top: 12px;
+    padding-left: 18px;
+}
+
+.viewport {
+    height: 300px;
+    /* viewport cao 300px, sẽ scroll khi nhiều dòng */
+    width: 100%;
+    border: 1px solid #ddd;
+    margin-top: 12px;
+    overflow: auto;
+}
+
+.msg {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    border-bottom: 1px solid #f0f0f0;
+    white-space: nowrap;
+}

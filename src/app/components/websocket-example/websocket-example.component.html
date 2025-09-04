@@ -1,0 +1,21 @@
+<h3>WebSocket + Search (realtime) + Virtual Scroll</h3>
+
+<div class="row">
+    <input [formControl]="chatControl" placeholder="Nhập tin nhắn..." />
+    <button (click)="send()">Gửi</button>
+</div>
+
+<div class="row">
+    <input [formControl]="keywordControl" placeholder="Lọc theo từ khóa..." />
+</div>
+
+<!-- <ul>
+    <li *ngFor="let line of filteredMessages$ | async">{{ line }}</li>
+</ul> -->
+
+<!-- Virtual Scroll -->
+<cdk-virtual-scroll-viewport itemSize="30" class="viewport">
+    <div *cdkVirtualFor="let line of filteredMessages$ | async" class="msg">
+        {{ line }}
+    </div>
+</cdk-virtual-scroll-viewport>

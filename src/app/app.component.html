@@ -1,14 +1,31 @@
 <div style="padding: 20px;">
-    <p>tap là side-effect operator: dùng để làm việc phụ trong pipeline mà không làm thay đổi dữ liệu của Observable</p>
+    <p><b>tap</b> là side-effect operator: dùng để làm việc phụ trong pipeline mà không làm thay đổi dữ liệu của
+        Observable</p>
     <p>Nó thường dùng cho logging, debug, trigger action, hoặc thao tác phụ (ví dụ: show/hide loading).</p>
     <p>Khác với map (biến đổi dữ liệu). tap chỉ "nhìn qua" và không thay đổi giá trị đi tiếp.</p>
 
+    <hr>
+
+    <h3>Ví dụ về WebSocket</h3>
+
+    <app-chat-dialog></app-chat-dialog>
+    <!-- <app-websocket-example></app-websocket-example> -->
+
+    <hr>
+
+    <!--combineLatest, switchMap, iif, forkJoin-->
     <app-user></app-user>
 
     <hr>
     <br>
 
+    <!--concatMap và mergeMap + from-->
     <app-user-post></app-user-post>
+
+    <hr>
+
+    <p>Ví dụ về <b>combineLatest</b> nhưng không thể dùng <b>forkJoin</b> được</p>
+    <app-combine-latest></app-combine-latest>
 
     <hr>
 
