@@ -6,13 +6,12 @@
 <!-- Cửa sổ chat -->
 <div class="chat-box" *ngIf="isOpen" @slideInOut>
     <div class="chat-header">
-        Chat Window
+        Chat Window Service
         <button class="close-btn" (click)="toggle()">✖</button>
     </div>
 
     <div class="chat-body">
         <!-- Gắn WebSocket chat component vào đây -->
-        <app-websocket-example></app-websocket-example>
-        <!-- <app-websocket-search></app-websocket-search> -->
+        <app-websocket-search></app-websocket-search>
     </div>
 </div>

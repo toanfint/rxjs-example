@@ -1,6 +1,6 @@
 .chat-toggle {
     position: fixed;
-    bottom: 20px;
+    top: 20px;
     right: 20px;
     background: #1976d2;
     color: white;
@@ -15,10 +15,10 @@
 
 .chat-box {
     position: fixed;
-    bottom: 80px;
+    top: 80px;
     right: 20px;
     width: 320px;
-    height: 400px;
+    height: 320px;
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 12px;

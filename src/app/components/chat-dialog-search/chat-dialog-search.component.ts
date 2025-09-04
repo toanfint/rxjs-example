@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-chat-dialog',
+  selector: 'app-chat-dialog-search',
   standalone: false,
-  templateUrl: './chat-dialog.component.html',
-  styleUrl: './chat-dialog.component.css',
+  templateUrl: './chat-dialog-search.component.html',
+  styleUrl: './chat-dialog-search.component.css',
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
@@ -19,7 +19,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class ChatDialogComponent {
+export class ChatDialogSearchComponent {
   isOpen = true;
 
   toggle() {

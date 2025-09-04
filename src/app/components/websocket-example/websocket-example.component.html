@@ -1,7 +1,7 @@
 <h3>WebSocket + Search (realtime) + Virtual Scroll</h3>
 
 <div class="row">
-    <input [formControl]="chatControl" placeholder="Nhập tin nhắn..." />
+    <input [formControl]="chatControl" placeholder="Nhập tin nhắn..." (keyup.enter)="send()" />
     <button (click)="send()">Gửi</button>
 </div>
 

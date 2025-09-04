@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { UserPostComponent } from './components/user-post/user-post.component';
 import { CombineLatestComponent } from './components/combine-latest/combine-latest.component';
 import { WebsocketExampleComponent } from './components/websocket-example/websocket-example.component';
 import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.component';
+import { WebsocketSearchComponent } from './components/websocket-search/websocket-search.component';
+import { ChatDialogSearchComponent } from './components/chat-dialog-search/chat-dialog-search.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.compon
     UserPostComponent,
     CombineLatestComponent,
     WebsocketExampleComponent,
-    ChatDialogComponent
+    ChatDialogComponent,
+    WebsocketSearchComponent,
+    ChatDialogSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,8 @@ import { ChatDialogComponent } from './components/chat-dialog/chat-dialog.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ScrollingModule
+    ScrollingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

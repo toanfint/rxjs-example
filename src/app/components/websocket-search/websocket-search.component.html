@@ -1,0 +1,8 @@
+<input [formControl]="chatControl" (keyup.enter)="send()" placeholder="Nhập tin nhắn..." />
+
+<div class="chat-body">
+    <div *ngFor="let msg of messages$ | async">
+        {{ msg }}
+    </div>
+</div>
+<button (click)="send()">Gửi</button>

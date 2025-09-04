@@ -76,12 +76,6 @@ export class WebsocketExampleComponent implements OnDestroy, AfterViewInit {
       if (list && list.length) {
         // Scroll đến cuối danh sách
         this.viewport.scrollToIndex(list.length - 1, 'smooth');
-        // Nếu muốn chỉ auto-scroll khi user đang ở cuối (giống chat Telegram/Slack), ta kiểm tra:
-        // const atBottom =
-        //   this.viewport.measureScrollOffset('bottom') < 50; // cách bottom < 50px
-        // if (atBottom) {
-        //   this.viewport.scrollToIndex(list.length - 1, 'smooth');
-        // }
       }
     });
   }
@@ -100,3 +94,10 @@ export class WebsocketExampleComponent implements OnDestroy, AfterViewInit {
     this.chatControl.setValue('');
   }
 }
+
+// Nếu muốn chỉ auto-scroll khi user đang ở cuối (giống chat Telegram/Slack), ta kiểm tra:
+// const atBottom =
+//   this.viewport.measureScrollOffset('bottom') < 50; // cách bottom < 50px
+// if (atBottom) {
+//   this.viewport.scrollToIndex(list.length - 1, 'smooth');
+// }
